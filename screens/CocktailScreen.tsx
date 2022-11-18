@@ -2,13 +2,14 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, ScrollView, View, Image, SafeAreaView } from 'react-native';
 import { useQuery } from '@tanstack/react-query';
+import { useRoute } from '@react-navigation/native';
 import getCocktailById from '../api/getCocktailById';
 import theme from '../styles/theme-design';
 
 
 
-const CocktailScreen = ({ route }: any) => {
-
+const CocktailScreen = () => {
+  const route = useRoute();
   const { cocktailId } = route.params;
 
   const {isLoading, isError, data, error} = useQuery(['cocktail', cocktailId], () => getCocktailById(cocktailId));
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.white,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingBottom: theme.spacing.extraLarge,
+    paddingBottom: theme.spacing.extralarge,
   },
   view: {
     marginHorizontal: theme.spacing.medium,
@@ -74,17 +75,17 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: theme.radius.medium,
   },
   title: {
-    fontSize: theme.fontSize.large,
+    fontSize: theme.fontsize.large,
     fontWeight: 'bold',
     marginTop: theme.spacing.medium,
   },
   subTitle: {
-    fontSize: theme.fontSize.medium,
+    fontSize: theme.fontsize.medium,
     fontWeight: 'bold',
     marginTop: theme.spacing.large,
   },
   ingredient: {
-    fontSize: theme.fontSize.small,
+    fontSize: theme.fontsize.small,
     fontWeight: 'light',
     marginTop: theme.spacing.small,
   },

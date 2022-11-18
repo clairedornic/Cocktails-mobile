@@ -5,15 +5,15 @@ const theme = {
         'lightBlue' : '#D6ECEC',
     },
     'spacing' : {
-        'extraLarge' : 35,
+        'extralarge' : 35,
         'large' : 25,
         'medium' : 20,
         'small' : 15,
-        'extraSmall' : 10,
+        'extrasmall' : 10,
         'thin' : 8,
         'none' : 0,
     },
-    'fontSize' : {
+    'fontsize' : {
         'large' : 24,
         'medium' : 20,
         'small' : 16,
