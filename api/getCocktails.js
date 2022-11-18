@@ -3,9 +3,9 @@ const getCocktails = () => {
     .then(response => {
         return response;
     })
-    .then(response => response.json())
+    .then(response => response.json());
 
     return(allCocktails);
-}
+};
 
 export default getCocktails;
