@@ -1,12 +1,13 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, ScrollView, View, Image, FlatList, SafeAreaView, TextInput  } from 'react-native';
-import { useQuery } from '@tanstack/react-query'
-import getCocktailById from './api/getCocktailById';
+import { StyleSheet, Text, ScrollView, View, Image, SafeAreaView } from 'react-native';
+import { useQuery } from '@tanstack/react-query';
+import getCocktailById from '../api/getCocktailById';
+import theme from '../styles/theme-design';
 
 
 
-const CocktailScreen = ({ route, navigation }) => {
+const CocktailScreen = ({ route }: any) => {
 
   const { cocktailId } = route.params;
 
@@ -16,11 +17,11 @@ const CocktailScreen = ({ route, navigation }) => {
 
 
   if (isLoading) {
-    return <Text>Loading...</Text>
+    return <Text>Loading...</Text>;
   }
 
-  if (isError) {
-    return <Text>Error: {error.message}</Text>
+  if (isError && error instanceof Error) {
+    return <Text>Error: {error.message}</Text>;
   }
 
   return (
@@ -42,50 +43,50 @@ const CocktailScreen = ({ route, navigation }) => {
             <Text style={styles.subTitle}>Recette</Text>
             <Text style={styles.ingredient}>{cocktail.strInstructions}</Text>
           </View>
-          <StatusBar style="auto" />
+          <StatusBar style="auto" backgroundColor='#FFF' />
         </View>
       </ScrollView>
     </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: theme.colors.white,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingBottom: 35,
+    paddingBottom: theme.spacing.extraLarge,
   },
   view: {
-    marginHorizontal: 20,
-    width: '100%',
+    marginHorizontal: theme.spacing.medium,
+    width: theme.size.full,
   },
   subView: {
-    paddingHorizontal: 20,
-    width: '100%',
+    paddingHorizontal: theme.spacing.medium,
+    width: theme.size.full,
   },
   image: {
-    width: '100%',
+    width: theme.size.full,
     height: 300,
     resizeMode: 'cover',
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
+    borderBottomLeftRadius: theme.radius.medium,
+    borderBottomRightRadius: theme.radius.medium,
   },
   title: {
-    fontSize: 24,
+    fontSize: theme.fontSize.large,
     fontWeight: 'bold',
-    marginTop: 20,
+    marginTop: theme.spacing.medium,
   },
   subTitle: {
-    fontSize: 20,
+    fontSize: theme.fontSize.medium,
     fontWeight: 'bold',
-    marginTop: 25,
+    marginTop: theme.spacing.large,
   },
   ingredient: {
-    fontSize: 16,
+    fontSize: theme.fontSize.small,
     fontWeight: 'light',
-    marginTop: 15,
+    marginTop: theme.spacing.small,
   },
 });
 

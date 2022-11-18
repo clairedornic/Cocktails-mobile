@@ -1,8 +1,7 @@
 import React from 'react';
-import HomeScreen from './HomeScreen';
-import CocktailScreen from './CocktailScreen';
+import HomeScreen from '../screens/HomeScreen';
+import CocktailScreen from '../screens/CocktailScreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NavigationContainer } from '@react-navigation/native';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +20,6 @@ const HomeStack = () => {
       />
     </Stack.Navigator>
   );
-}
+};
 
 export default HomeStack;
