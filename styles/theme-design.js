@@ -25,6 +25,6 @@ const theme = {
         'medium' : 20, 
         'small' : 15,
     }
-}
+};
 
 export default theme;

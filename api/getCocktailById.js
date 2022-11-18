@@ -3,9 +3,9 @@ const getCocktailById = (idCocktail) => {
     .then(response => {
         return response;
     })
-    .then(response => response.json())
+    .then(response => response.json());
 
     return(cocktail);
-}
+};
 
 export default getCocktailById;
