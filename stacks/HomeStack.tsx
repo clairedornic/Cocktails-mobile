@@ -3,7 +3,12 @@ import HomeScreen from '../screens/HomeScreen';
 import CocktailScreen from '../screens/CocktailScreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-const Stack = createNativeStackNavigator();
+export type RootStackParamList = {
+  HomeScreen: undefined;
+  CocktailScreen: { cocktailId: number };
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const HomeStack = () => {
   return (

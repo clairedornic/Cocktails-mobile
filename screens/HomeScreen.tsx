@@ -4,8 +4,12 @@ import { StyleSheet, Text, View, Image, FlatList, SafeAreaView, TouchableOpacity
 import { useQuery } from '@tanstack/react-query';
 import getCocktails from '../api/getCocktails';
 import theme from '../styles/theme-design';
+import { RootStackParamList } from '../stacks/HomeStack';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-const HomeScreen = ({ navigation }) => {
+type Props = NativeStackScreenProps<RootStackParamList, 'HomeScreen'>;
+
+const HomeScreen = ({ navigation }: Props) => {
 
   //desconstruction classique
   const { isLoading, isError, data, error, refetch } = useQuery(['cocktails'], getCocktails);
@@ -49,7 +53,10 @@ const HomeScreen = ({ navigation }) => {
             } 
             data={cocktails}
             style={styles.list}
-            renderItem={({item}) =><TouchableOpacity style={styles.itemList} onPress={() => {navigation.navigate('CocktailScreen', {cocktailId: item.idDrink});}}><Text>{item.strDrink}</Text></TouchableOpacity>}
+            renderItem={({item}) =><TouchableOpacity style={styles.itemList} onPress={() => {navigation.navigate('CocktailScreen', {
+              cocktailId: item.idDrink
+            }
+            );}}><Text>{item.strDrink}</Text></TouchableOpacity>}
           />
           <StatusBar style="auto" backgroundColor='#D6ECEC' />
       </View>

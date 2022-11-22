@@ -2,15 +2,15 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, ScrollView, View, Image, SafeAreaView } from 'react-native';
 import { useQuery } from '@tanstack/react-query';
-import { useRoute } from '@react-navigation/native';
 import getCocktailById from '../api/getCocktailById';
 import theme from '../styles/theme-design';
+import { RootStackParamList } from '../stacks/HomeStack';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
+type Props = NativeStackScreenProps<RootStackParamList, 'CocktailScreen'>;
 
-
-const CocktailScreen = () => {
-  const route = useRoute();
-  const { cocktailId } = route.params;
+const CocktailScreen = ({ route }: Props) => {
+  const { cocktailId }: { cocktailId: number } = route.params;
 
   const {isLoading, isError, data, error} = useQuery(['cocktail', cocktailId], () => getCocktailById(cocktailId));
 
@@ -86,7 +86,6 @@ const styles = StyleSheet.create({
   },
   ingredient: {
     fontSize: theme.fontsize.small,
-    fontWeight: 'light',
     marginTop: theme.spacing.small,
   },
 });
