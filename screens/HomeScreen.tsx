@@ -4,15 +4,15 @@ import { StyleSheet, Text, View, Image, FlatList, SafeAreaView, TouchableOpacity
 import { useQuery } from '@tanstack/react-query';
 import getCocktails from '../api/getCocktails';
 import theme from '../styles/theme-design';
+import { RootStackParamList } from '../stacks/HomeStack';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-const wait = (timeout) => {
-  return new Promise(resolve => setTimeout(resolve, timeout));
-};
+type Props = NativeStackScreenProps<RootStackParamList, 'HomeScreen'>;
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = ({ navigation }: Props) => {
 
   //desconstruction classique
-  const { isLoading, isError, data, error, refetch, isRefetching } = useQuery(['cocktails'], getCocktails);
+  const { isLoading, isError, data, error, refetch } = useQuery(['cocktails'], getCocktails);
 
   //Descontruction directement à partir de la variable
   const cocktails = data?.drinks;
@@ -21,14 +21,14 @@ const HomeScreen = ({ navigation }) => {
   
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
-    refetch().finally(() => setRefresh(false));
+    refetch().finally(() => setRefreshing(false));
   }, []);
 
   if (isLoading) {
     return <Text>Loading...</Text>;
   }
 
-  if (isError) {
+  if (isError && error instanceof Error) {
     return <Text>Error: {error.message}</Text>;
   }
 
@@ -38,7 +38,7 @@ const HomeScreen = ({ navigation }) => {
           <View style={styles.header}>
             <Text style={styles.title}>Gin&apos;s Coquetel</Text>
             <Image
-                source={require('./assets/img/cocktail.png')}
+                source={require('../assets/img/cocktail.png')}
                 style={styles.image}
             />
           </View>
@@ -53,7 +53,10 @@ const HomeScreen = ({ navigation }) => {
             } 
             data={cocktails}
             style={styles.list}
-            renderItem={({item}) =><TouchableOpacity style={styles.itemList} onPress={() => {navigation.navigate('CocktailScreen', {cocktailId: item.idDrink})}}><Text>{item.strDrink}</Text></TouchableOpacity>}
+            renderItem={({item}) =><TouchableOpacity style={styles.itemList} onPress={() => {navigation.navigate('CocktailScreen', {
+              cocktailId: item.idDrink
+            }
+            );}}><Text>{item.strDrink}</Text></TouchableOpacity>}
           />
           <StatusBar style="auto" backgroundColor='#D6ECEC' />
       </View>
@@ -82,19 +85,19 @@ const styles = StyleSheet.create({
   image: {
     width: 100, 
     height: 150,
-    marginTop: theme.spacing.extraLarge,
-    marginBottom: theme.spacing.extraLarge,
+    marginTop: theme.spacing.extralarge,
+    marginBottom: theme.spacing.extralarge,
   },
   title: {
     padding: theme.spacing.small,
-    fontSize: theme.fontSize.large,
+    fontSize: theme.fontsize.large,
     fontWeight: 'bold',
-    marginTop: theme.spacing.extraLarge,
+    marginTop: theme.spacing.extralarge,
     width: '40%',
     textAlign: 'left',
   },
   subtitle: {
-    fontSize:  theme.fontSize.medium,
+    fontSize:  theme.fontsize.medium,
     fontWeight: 'bold',
     width: theme.size.full,
     padding: theme.spacing.small,
@@ -106,8 +109,8 @@ const styles = StyleSheet.create({
   },
   itemList: { 
     marginVertical: theme.spacing.thin,
-    paddingVertical: theme.spacing.extraSmall,
-    paddingHorizontal: theme.spacing.extraSmall,
+    paddingVertical: theme.spacing.extrasmall,
+    paddingHorizontal: theme.spacing.extrasmall,
     borderRadius: theme.radius.small,
     backgroundColor: theme.colors.lightBlue,
     width: theme.size.full,
