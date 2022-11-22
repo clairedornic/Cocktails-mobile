@@ -44,7 +44,7 @@ const CocktailScreen = ({ route }: Props) => {
             <Text style={styles.subTitle}>Recette</Text>
             <Text style={styles.ingredient}>{cocktail.strInstructions}</Text>
           </View>
-          <StatusBar style="auto" backgroundColor='#FFF' />
+          <StatusBar style="auto" backgroundColor='#D6ECEC' />
         </View>
       </ScrollView>
     </SafeAreaView>
