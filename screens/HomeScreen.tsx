@@ -36,6 +36,8 @@ const HomeScreen = ({ navigation }: Props) => {
 
   if (isError && error instanceof Error) {
     return <Text>Error: {error.message}</Text>;
+  } else if (isError) {
+    return <Text>Error</Text>;
   }
 
   return (
