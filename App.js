@@ -1,4 +1,5 @@
 import React from 'react';
+import { useCallback } from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -13,12 +14,6 @@ const Tab = createBottomTabNavigator();
 const queryClient = new QueryClient();
 
 const App = () => {
-
-  const [fontsLoaded] = useFonts({
-    'DMSans': require('./assets/fonts/DMSans-Regular.ttf'),
-    'DMSans-bold': require('./assets/fonts/DMSans-Bold.ttf'),
-  });
-
   return (
     <QueryClientProvider client={queryClient}>
       <NavigationContainer>
