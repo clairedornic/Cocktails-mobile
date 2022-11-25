@@ -3,6 +3,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useFonts } from 'expo-font';
 
 //Components
 import HomeStack from './stacks/HomeStack';
@@ -12,6 +13,12 @@ const Tab = createBottomTabNavigator();
 const queryClient = new QueryClient();
 
 const App = () => {
+
+  const [fontsLoaded] = useFonts({
+    'DMSans': require('./assets/fonts/DMSans-Regular.ttf'),
+    'DMSans-bold': require('./assets/fonts/DMSans-Bold.ttf'),
+  });
+
   return (
     <QueryClientProvider client={queryClient}>
       <NavigationContainer>
