@@ -1,11 +1,11 @@
 const getCocktailById = (idCocktail) => {
-    let cocktail = fetch('https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=' + idCocktail)
-    .then(response => {
-        return response;
+  let cocktail = fetch('https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=' + idCocktail)
+    .then((response) => {
+      return response;
     })
-    .then(response => response.json());
+    .then((response) => response.json());
 
-    return(cocktail);
+  return cocktail;
 };
 
 export default getCocktailById;

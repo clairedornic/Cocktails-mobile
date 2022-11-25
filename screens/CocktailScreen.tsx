@@ -12,10 +12,11 @@ type Props = NativeStackScreenProps<RootStackParamList, 'CocktailScreen'>;
 const CocktailScreen = ({ route }: Props) => {
   const { cocktailId }: { cocktailId: number } = route.params;
 
-  const {isLoading, isError, data, error} = useQuery(['cocktail', cocktailId], () => getCocktailById(cocktailId));
+  const { isLoading, isError, data, error } = useQuery(['cocktail', cocktailId], () =>
+    getCocktailById(cocktailId)
+  );
 
   const cocktail = data?.drinks[0];
-
 
   if (isLoading) {
     return <Text>Loading...</Text>;
@@ -29,10 +30,7 @@ const CocktailScreen = ({ route }: Props) => {
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.view}>
         <View style={styles.container}>
-          <Image
-            source={{ uri:cocktail.strDrinkThumb}}
-            style={styles.image}
-          />
+          <Image source={{ uri: cocktail.strDrinkThumb }} style={styles.image} />
           <Text style={styles.title}>{cocktail.strDrink}</Text>
           <View style={styles.subView}>
             <Text style={styles.subTitle}>Ingredients</Text>
@@ -44,7 +42,7 @@ const CocktailScreen = ({ route }: Props) => {
             <Text style={styles.subTitle}>Recette</Text>
             <Text style={styles.ingredient}>{cocktail.strInstructions}</Text>
           </View>
-          <StatusBar style="auto" backgroundColor='#D6ECEC' />
+          <StatusBar style="auto" backgroundColor="#D6ECEC" />
         </View>
       </ScrollView>
     </SafeAreaView>
