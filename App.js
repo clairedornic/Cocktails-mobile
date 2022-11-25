@@ -1,8 +1,10 @@
 import React from 'react';
+import { useCallback } from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useFonts } from 'expo-font';
 
 //Components
 import HomeStack from './stacks/HomeStack';
