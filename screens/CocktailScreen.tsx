@@ -4,10 +4,10 @@ import { StyleSheet, Text, ScrollView, View, Image, SafeAreaView } from 'react-n
 import { useQuery } from '@tanstack/react-query';
 import getCocktailById from '../api/getCocktailById';
 import theme from '../styles/theme-design';
-import { RootStackParamList } from '../stacks/HomeStack';
+import { HomeStackParamList } from '../stacks/HomeStack';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'CocktailScreen'>;
+type Props = NativeStackScreenProps<HomeStackParamList, 'CocktailScreen'>;
 
 const CocktailScreen = ({ route }: Props) => {
   const { cocktailId }: { cocktailId: number } = route.params;
