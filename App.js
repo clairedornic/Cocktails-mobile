@@ -4,9 +4,6 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { useFonts } from 'expo-font';
-
-//Components
 import HomeStack from './stacks/HomeStack';
 import AppDetailsScreen from './screens/AppDetailsScreen';
 
@@ -28,7 +25,6 @@ const App = () => {
                 iconName = focused ? 'wine' : 'wine-outline';
               }
 
-              // You can return any component that you like here!
               return <Ionicons name={iconName} size={size} color={color} />;
             },
             tabBarActiveTintColor: 'black',
