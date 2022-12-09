@@ -1,6 +1,12 @@
 const getCocktails = () => {
   let allCocktails = fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=gin').then(
-    (response) => response.json()
+    (response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw Error(response.statusText);
+      }
+    }
   );
 
   return allCocktails;
